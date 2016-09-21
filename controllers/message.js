@@ -20,7 +20,9 @@ router.post('/', isLoggedIn, function (req, res) {
 
 // READ all messages
 router.get('/', function (req, res) {
-  db.message.findAll().then(function (messages) {
+  db.message.findAll({
+    include: [db.comment]
+      }).then(function (messages) {
     res.render('messages/list', {messages: messages});
   });
 });
@@ -32,7 +34,6 @@ router.get('/display', function (req, res) {
   });
 });
 
-
 // READ message
 router.get('/:id', isLoggedIn, function (req, res) {
   db.message.find({
@@ -40,6 +41,20 @@ router.get('/:id', isLoggedIn, function (req, res) {
     attributes: ['user', 'msg', 'id']
   }).then(function (message) {
     res.json(message);
+  });
+});
+
+// POST comment
+router.post('/:id/comments', isLoggedIn, function (req, res) {
+  db.message.find({
+    where: {id: req.params.id}
+  }).then(function (message) {
+    message.createComment({
+      reply: req.body.reply,
+      writer: req.user.name
+    }).then(function (post) {
+      res.redirect('/messages/');
+    });
   });
 });
 

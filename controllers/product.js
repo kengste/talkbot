@@ -34,7 +34,6 @@ router.get('/display', function (req, res) {
   });
 });
 
-
 // READ product
 router.get('/:id', isLoggedIn, function (req, res) {
   db.product.find({

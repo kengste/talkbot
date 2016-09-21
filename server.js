@@ -39,7 +39,7 @@ app.get('/profile', isLoggedIn, function (req, res) {
 
 app.use('/auth', require('./controllers/auth'));
 app.use('/messages', require('./controllers/message'));
-app.use('/products', require('./controllers/product'));
+app.use('/comments', require('./controllers/comment'));
 
 var server = app.listen(process.env.PORT || 3000, function (req, res) { console.log('Listening to port'); });
 
