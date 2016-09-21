@@ -1,7 +1,10 @@
 <a href='/'>Home</a> / Messages
 <br /><br />
+<ul class="collapsible" data-collapsible="accordion">
+
 <% for (var i = 0; i < messages.length; i++) { %>
-  <div data-messageid='<%= i %>'>
+  <li>
+  <div data-messageid='<%= i %>' class="collapsible-header"><i class="material-icons">filter_drama</i>
   <%= messages[i].msg %>
   <br />
   <% if (currentUser === undefined) { %>
@@ -31,11 +34,15 @@
         <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
       </div>
     </div>
-
   <br />
   <small><%=messages[i].user%><br /><%= messages[i].createdAt %></small>
   </div>
+
   <% messages[i].comments.forEach( function(comment){ %>
+    <div class="collapsible-body">
     <h6><%= comment.reply %>&nbsp;<%= comment.writer %></h6>
+  </div>
   <% }) %>
+  </li>
   <% } %>
+</ul>
