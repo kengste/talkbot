@@ -1,0 +1,16 @@
+  <body>
+    <h1>Edit leaderboard entry for <%= data.id %></h1>
+    <div>
+      <form action="/messages/<%= data.id %>?_method=PUT" method="POST">
+        <div>
+          <textarea rows="10" cols="40" name="msg"><%= data.msg %></textarea>
+        </div>
+        <button type="submit" name="action">Save changes</button>
+      </form>
+      <br />
+        <form action="/messages/<%= data.id %>?_method=DELETE" method="POST">
+          <button type="submit" name="action">Delete</button>
+        </form>
+    </div>
+
+  </body>
