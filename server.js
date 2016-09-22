@@ -5,7 +5,7 @@ var app = express();
 var session = require('express-session');
 var passport = require('./config/ppConfig');
 var flash = require('connect-flash');
-var isLoggedIn = require('./middleware/isLoggedIn');
+// var isLoggedIn = require('./middleware/isLoggedIn');
 var methodOverride = require('method-override');
 app.use(methodOverride('_method'));
 app.set('view engine', 'ejs');
@@ -30,16 +30,15 @@ app.use(function (req, res, next) {
 });
 
 app.get('/', function (req, res) {
-  res.render('index');
+  res.redirect('/messages');
 });
 
-app.get('/profile', isLoggedIn, function (req, res) {
-  res.render('profile');
-});
+// app.get('/profile', isLoggedIn, function (req, res) {
+//   res.render('profile');
+// });
 
 app.use('/auth', require('./controllers/auth'));
 app.use('/messages', require('./controllers/message'));
-app.use('/comments', require('./controllers/comment'));
 
 var server = app.listen(process.env.PORT || 3000, function (req, res) { console.log('Listening to port'); });
 

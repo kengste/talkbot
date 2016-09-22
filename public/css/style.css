@@ -23,7 +23,6 @@
       flex: 1 0 auto;
     }
 
-/*.bodytext { max-width: 700px; }*/
 .bodytext1 { font-size: 75%;
               line-height: 0.5;
 }
@@ -34,4 +33,16 @@
 .pagination {
   margin: 0;
   height: 36px;
+}
+.bgcolor {
+  background-color: #4db6ac;
+}
+.transparent {
+  color: grey lighten-4;
+}
+.inlined {
+  display:inline-block;
+}
+.small {
+  font-size: 40%;
 }
