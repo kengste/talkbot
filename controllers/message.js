@@ -20,15 +20,26 @@ router.post('/', isLoggedIn, function (req, res) {
 
 // READ all messages
 router.get('/', function (req, res) {
-  db.message.findAll({
-    order: [
-      [ 'id', 'ASC'],
-      [ db.comment, 'id', 'DESC']
-    ],
-    include: [db.comment]
-  }).then(function (messages) {
-    res.render('messages/list', {
-      messages: messages
+  db.message.count().then(function (count) {
+    var pageSize = 8;
+    var pageCount = count / pageSize;
+    var currentPage = 1;
+    if (typeof req.query.page !== 'undefined') {
+      currentPage = +req.query.page;
+    }
+    db.message.findAll({
+      offset: (currentPage - 1) * pageSize,
+      limit: pageSize,
+      order: [
+        [ 'id', 'ASC'],
+        [ db.comment, 'id', 'DESC']
+      ],
+      include: [db.comment]
+    }).then(function (messages) {
+      console.log(count);
+      res.render('messages/list', {
+        messages: messages
+      });
     });
   });
 });
