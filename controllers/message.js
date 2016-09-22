@@ -21,7 +21,7 @@ router.post('/', isLoggedIn, function (req, res) {
 // READ all messages
 router.get('/', function (req, res) {
   db.message.count().then(function (count) {
-    var pageSize = 8;
+    var pageSize = 5;
     var pageCount = count / pageSize;
     var currentPage = 1;
     if (typeof req.query.page !== 'undefined') {
@@ -38,7 +38,9 @@ router.get('/', function (req, res) {
     }).then(function (messages) {
       console.log(count);
       res.render('messages/list', {
-        messages: messages
+        messages: messages,
+        pageCount: pageCount,
+        currentPage: currentPage
       });
     });
   });

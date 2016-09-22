@@ -1,5 +1,7 @@
-<a href='/'>Home</a>&nbsp;/&nbsp;Messages
+<a href='/'>Home</a>&nbsp;/&nbsp;Topic (name)
 <br /><br />
+<div class="row defineheight">
+  <div class="col s6">
 <a class="modal-trigger" href="#commenta<%= messages.length.id %>">
   <i class="small material-icons">chat_bubble</i>
 </a>
@@ -16,7 +18,19 @@
       </form>
     </div>
   </div>
-
+</div>
+<div class="col s6 right-align">
+  <ul class="pagination">
+      <% for (var i = 1; i < (pageCount+1); i++) { %>
+        <% if (currentPage === i && pageCount > 1) {%>
+        <li class="active"><a><%= i %></a></li>
+        <% } else { %>
+          <li class="waves-effect"><a href="/messages/?page=<%= i %>"><%= i %></a></li>
+      <% } %>
+      <% } %>
+    </ul>
+</div>
+</div>
 <ul class="collapsible bodytext" data-collapsible="expandable">
 <% for (var i = 0; i < messages.length; i++) { %>
   <li>

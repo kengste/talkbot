@@ -31,3 +31,7 @@
 .title { font-weight: bold;
           font-size: 1.75em;
 }
+.pagination {
+  margin: 0;
+  height: 36px;
+}
