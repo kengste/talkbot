@@ -1,20 +1,53 @@
 <a href='/'>Home</a> / Messages
 <br /><br />
+<a class="modal-trigger" href="#commenta<%= messages.length.id %>">
+  <i class="small material-icons">chat_bubble</i>
+</a>
+  <div id="commenta<%= messages.length.id %>" class="modal">
+    <div class="modal-content">
+      <p class='title'>Comment:</p>
+      <form action="/messages/" method="POST" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+        <div class="row">
+          <div class="input-field col s12">
+            <textarea rows="10" cols="40" name="msg" placeholder="Kindly leave your comment here."></textarea>
+          </div>
+        </div>
+        <button class="btn waves-effect waves-light-blue accent-3" type="submit" name="action">Submit</button>
+      </form>
+    </div>
+  </div>
+
 <ul class="collapsible bodytext" data-collapsible="expandable">
 <% for (var i = 0; i < messages.length; i++) { %>
   <li>
   <div data-messageid='<%= i %>' class="collapsible-header bodytext1"><div class='title'><%=messages[i].user%></div>
   <i class="material-icons">filter_drama</i>
-  <%= messages[i].msg %>
+  <%= messages[i].msg %><br />
+  <small><%= messages[i].createdAt %></small>
   <br />
   <% if (currentUser === undefined) { %>
   <% } else if (currentUser.name === messages[i].user) { %>
-    <small><%= messages[i].createdAt %></small>
 
-    <a href="/messages/<%= messages[i].id %>/edit">Click to edit</a>
   <% } %>
-  <a class="modal-trigger" href="#modal<%= messages[i].id %>">Comment</a>
-    <div id="modal<%= messages[i].id %>" class="modal">
+  <a class="modal-trigger" href="#edit<%= messages[i].id %>">Edit</a>
+    <div id="edit<%= messages[i].id %>" class="modal">
+      <div class="modal-content">
+        <p class='title'>Comment:</p>
+        <form action="/messages/<%= messages[i].id %>?_method=PUT" method="POST" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+        <div>
+          <textarea rows="10" cols="40" name="msg"><%= messages[i].msg %></textarea>
+        </div>
+        <button type="submit" name="action">Save changes</button>
+      </form>
+      <br />
+        <form action="/messages/<%= messages[i].id %>?_method=DELETE" method="POST">
+          <button type="submit" name="action">Delete</button>
+        </form>
+      </div>
+    </div>
+    <br>
+  <a class="modal-trigger" href="#comment<%= messages[i].id %>">Comment</a>
+    <div id="comment<%= messages[i].id %>" class="modal">
       <div class="modal-content">
         <p class='title'>Comment:</p>
         <form action="/messages/<%= messages[i].id %>/comments" method="POST" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
@@ -23,11 +56,15 @@
               <textarea rows="10" cols="40" name="reply" placeholder="Kindly leave your comment here."></textarea>
             </div>
           </div>
-          <button class="btn waves-effect waves-light-blue accent-3" type="submit" name="action">Submit
-</button>
+          <button class="btn waves-effect waves-light-blue accent-3" type="submit" name="action">Submit</button>
         </form>
       </div>
     </div>
+    <br />
+    <% if (messages[i].comments.length === 0) { %>
+    <%} else { %>
+    <%= messages[i].comments.length %>&nbsp;comments&nbsp;posted
+    <% } %>
   </div>
   <% messages[i].comments.forEach( function(comment){ %>
     <div class="collapsible-body bodytext2">

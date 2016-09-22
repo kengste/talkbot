@@ -21,17 +21,15 @@ router.post('/', isLoggedIn, function (req, res) {
 // READ all messages
 router.get('/', function (req, res) {
   db.message.findAll({
+    order: [
+      [ 'id', 'ASC'],
+      [ db.comment, 'id', 'DESC']
+    ],
     include: [db.comment]
   }).then(function (messages) {
     res.render('messages/list', {
       messages: messages
     });
-  });
-});
-// READ all messages
-router.get('/display', function (req, res) {
-  db.message.findAll().then(function (apple) {
-    res.json(apple);
   });
 });
 
@@ -69,13 +67,13 @@ router.delete('/:id', isLoggedIn, function (req, res) {
 });
 
 // UPDATE - edit form, pre-populated with data
-router.get('/:id/edit', isLoggedIn, function (req, res) {
-  db.message.find({
-    where: {id: parseInt(req.params.id)}
-  }).then(function (tobeupdated) {
-    res.render('messages/edit', {data: tobeupdated});
-  });
-});
+// router.get('/:id/edit', isLoggedIn, function (req, res) {
+//   db.message.find({
+//     where: {id: parseInt(req.params.id)}
+//   }).then(function (tobeupdated) {
+//     res.render('messages/list', {data: tobeupdated});
+//   });
+// });
 // UPDATE - accept info from form, show updated message
 router.put('/:id', isLoggedIn, function (req, res) {
   db.message.update({
