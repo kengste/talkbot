@@ -22,11 +22,12 @@ router.post('/', isLoggedIn, function (req, res) {
 router.get('/', function (req, res) {
   db.message.findAll({
     include: [db.comment]
-      }).then(function (messages) {
-    res.render('messages/list', {messages: messages});
+  }).then(function (messages) {
+    res.render('messages/list', {
+      messages: messages
+    });
   });
 });
-
 // READ all messages
 router.get('/display', function (req, res) {
   db.message.findAll().then(function (apple) {

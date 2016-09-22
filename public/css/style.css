@@ -4,7 +4,6 @@
 };
 
 #mapid { height: 180px; }
-
 .input-field input[type=date]:focus + label,
     .input-field input[type=text]:focus + label,
     .input-field input[type=email]:focus + label,
@@ -23,3 +22,12 @@
     main {
       flex: 1 0 auto;
     }
+
+/*.bodytext { max-width: 700px; }*/
+.bodytext1 { font-size: 75%;
+              line-height: 0.5;
+}
+.bodytext2 { font-size: 75%; }
+.title { font-weight: bold;
+          font-size: 1.75em;
+}

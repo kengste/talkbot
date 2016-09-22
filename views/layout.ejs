@@ -4,7 +4,6 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Authentication</title>
-    <!-- <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css"> -->
     <link type="text/css" rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.0-rc.3/dist/leaflet.css" />
     <!-- Latest compiled and minified CSS & JS -->
@@ -12,26 +11,15 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   </head>
   <body>
-    <nav>
-      <div class="nav-wrapper brown lighten-3">
-        <a href="#" class="brand-logo">Buyback</a>
-        <ul id="nav-mobile" class="right hide-on-med-and-down">
-          <li><a href="">Contact</a></li>
-          <li><a href="/messages/">Testimonial</a></li>
-          <li><a href="/products/">Store</a></li>
-          <li><a href="/auth/login">Login</a></li>
-          <li>Welcome!&nbsp;&nbsp;</a></li>
-        </ul>
-      </div>
-    </nav>
-
     <div class="container">
+      <div class="row">
+      <div class="col s4 center-align"><a href="/messages/">Forum</a></div>
+      <div class="col s4 center-align"><a href="/auth/login">Login</a></div>
+      <div class="col s4 center-align"><a href="/">Home</a></div>
+      </div>
       <%- body %>
       <% include partials/alerts %>
     </div>
-    <!-- <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
-    <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script> -->
-
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script type="text/javascript" src="/js/materialize.min.js"></script>
     <script type="text/javascript" src="/js/pagination.js"></script>
