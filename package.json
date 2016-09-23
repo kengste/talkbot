@@ -30,6 +30,7 @@
     "express-ejs-layouts": "^2.1.0",
     "express-session": "^1.14.1",
     "forms": "^1.2.0",
+    "method-override": "^2.3.6",
     "morgan": "^1.7.0",
     "passport": "^0.3.2",
     "passport-local": "^1.0.0",
