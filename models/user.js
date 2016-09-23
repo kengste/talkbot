@@ -1,5 +1,4 @@
 'use strict';
-var DataTypes = require('Sequelize').DataTypes;
 var bcrypt = require('bcrypt');
 
 module.exports = function (sequelize, DataTypes) {
