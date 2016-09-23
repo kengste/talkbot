@@ -28,7 +28,7 @@
       <form action="/messages/" method="POST" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
         <div class="row">
           <div class="input-field col s12">
-            <textarea rows="10" cols="40" name="msg" placeholder="Kindly leave your message here."></textarea>
+            <textarea rows="40" cols="40" name="msg" placeholder="Kindly leave your message here."></textarea>
           </div>
         </div>
         <button class="btn waves-effect waves-light-blue accent-3" type="submit" name="action">Submit</button>
@@ -62,17 +62,17 @@
         <div class="modal-content">
           <p class='title'>Comment:</p>
           <form action="/messages/<%= messages[i].id %>?_method=PUT" method="POST" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-          <div>
-            <textarea rows="10" cols="40" name="msg"><%= messages[i].msg %></textarea>
-          </div>
-          <button type="submit" name="action">Save changes</button>
-        </form>
-        <br />
+            <div>
+              <textarea rows="10" cols="40" name="msg"><%= messages[i].msg %></textarea>
+            </div>
+            <button type="submit" name="action">Save changes</button>
+          </form>
+          <br />
           <form action="/messages/<%= messages[i].id %>?_method=DELETE" method="POST" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
             <button type="submit" name="action" float="right"><i class="material-icons">delete</i></button>
           </form>
         </div>
-</div>
+      </div>
   <% } %>
   <div class = "row">
   <div class="col s2 left-align">
