@@ -86,7 +86,11 @@
                       <% if (currentUser === undefined) { %>
                         <% } else if (currentUser.name === messages[i].user) { %>
                           <br />
-                          <label><a class="modal-trigger" href="#edit<%= messages[i].id %>">Edit/ delete post</a></label>
+                          <form action="/messages/<%= messages[i].id %>?_method=DELETE" method="POST">
+                          <a href="javascript:void(0);" onclick="$(this).closest('form').submit();">Delete</a>
+                        </form>
+
+                          <label><a class="modal-trigger" href="#edit<%= messages[i].id %>">Edit</a></label>
                           <div id="edit<%= messages[i].id %>" class="modal">
                             <div class="modal-content">
                               <p class='title'>
@@ -101,9 +105,6 @@
                                 <button type="submit" name="action">Save changes</button>
                               </form>
                               <br />
-                              <form action="/messages/<%= messages[i].id %>?_method=DELETE" method="POST" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                <button type="submit" name="action" float="right"><i class="material-icons">delete</i></button>
-                              </form>
                             </div>
                           </div>
                           <% } %>
