@@ -5,6 +5,7 @@ var app = express();
 var session = require('express-session');
 var passport = require('./config/ppConfig');
 var flash = require('connect-flash');
+var db = require('./models');
 // var isLoggedIn = require('./middleware/isLoggedIn');
 var methodOverride = require('method-override');
 app.use(methodOverride('_method'));
@@ -33,9 +34,18 @@ app.get('/', function (req, res) {
   res.redirect('/messages');
 });
 
-// app.get('/profile', isLoggedIn, function (req, res) {
-//   res.render('profile');
-// });
+app.get('/query/', function (req, res) {
+  console.log(req);
+  db.message.findAll({
+    where: {
+      msg: {
+        $like: '%Boy%'
+      }
+    }, include: [db.comment]
+  }).then(function (result) {
+    res.json(result)
+  });
+});
 
 app.use('/auth', require('./controllers/auth'));
 app.use('/messages', require('./controllers/message'));

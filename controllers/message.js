@@ -28,6 +28,7 @@ router.get('/', function (req, res) {
       currentPage = +req.query.page;
     }
     db.message.findAll({
+
       offset: (currentPage - 1) * pageSize,
       limit: pageSize,
       order: [
